@@ -23,6 +23,9 @@ h1{
     font-size: xx-large;
     margin: 20px 0px 0px;
 }
+table, th{
+    border: 1px solid black;
+}
 .slider{
     margin: 10,50px;
     padding: 5px;
