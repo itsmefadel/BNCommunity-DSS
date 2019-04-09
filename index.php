@@ -1,15 +1,17 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="index.css">
-        <script src="form.js" type="text/javascript"></script>  
+        <script src="form.js" type="text/javascript"></script>
+        <script src="matematikaDasar.js" type="text/javascript"></script>
     </head>
 <body>
     <div id="divFormBobot" class="formBobot">
+        <div class="inputForm">
         <form autocomplete="off" method="post" enctype="multipart/form-data">
         <h1>Tentukan Prioritas Kriteria</h1>
             
         <h2>Antara Rating Novel dengan Penghargaan</h2>
-            <h3 id="kataSlider1">Rating Novel <span style='color:blue'>sama penting</span> dengan Penghargaan</h3>
+        <h3 id="kataSlider1">Rating Novel <span style='color:blue'>sama penting</span> dengan Penghargaan</h3>
         <input id="slider1" name="inputJudulSkenario" type="range" value="8" min="0" max="16" class="slider" onmousemove="prosesSlider1(this.value)" onChange="prosesSlider1(this.value)">
         <span id="nilaiSlider1">1</span>
         
@@ -38,7 +40,7 @@
         <input id="slider6" name="inputJudulSkenario" type="range" value="8" min="0" max="16" class="slider" onmousemove="prosesSlider6(this.value,6)" onChange="prosesSlider6(this.value,6)">
         <span id="nilaiSlider6">1</span>
         <p></p>
-            
+        </div>
             <hr>
             <div id="matriksInput">
                 <h2>Matriks Pairwise Comparison</h2>
@@ -80,14 +82,13 @@
                     </tr>
                     <tr>
                     <th>Jumlah Kolom</th>
-                    <th bgcolor="green" id="jumlahKolom1">4</th>
-                    <th bgcolor="green" id="jumlahKolom2">4</th>
-                    <th bgcolor="green" id="jumlahKolom3">4</th>
-                    <th bgcolor="green" id="jumlahKolom4">4</th>
+                    <th bgcolor="green" id="jumlahKolom1">1</th>
+                    <th bgcolor="green" id="jumlahKolom2">1</th>
+                    <th bgcolor="green" id="jumlahKolom3">1</th>
+                    <th bgcolor="green" id="jumlahKolom4">1</th>
                     </tr>
                 </table>
             </div>
-            
             <hr>
             <div id="matriksInputNormalisasi">
                 <h2>Matriks Normalisasi Input</h2>
@@ -103,7 +104,7 @@
                     </tr>
                     <tr>
                     <th>Rating Novel</th>
-                    <th bgcolor="yellow" id="barisNormRatingNovel1">1</th>
+                    <th id="barisNormRatingNovel1">1</th>
                     <th id="barisNormRatingNovel2">1</th>
                     <th id="barisNormRatingNovel3">1</th>
                     <th id="barisNormRatingNovel4">1</th>
@@ -113,7 +114,7 @@
                     <tr>
                     <th>Penghargaan</th>
                     <th id="barisNormPenghargaan1">1</th>
-                    <th bgcolor="yellow" id="barisNormPenghargaan2">1</th>
+                    <th id="barisNormPenghargaan2">1</th>
                     <th id="barisNormPenghargaan3">1</th>
                     <th id="barisNormPenghargaan4">1</th>
                     <th id="barisNormPenghargaan5">4</th>
@@ -121,29 +122,97 @@
                     </tr>
                     <tr>
                     <th>Popularitas Penulis</th>
-                    <th id="barisNormPopularitasPenulis1">1</th>
-                    <th id="barisNormPopularitasPenulis2">1</th>
-                    <th bgcolor="yellow" id="barisNormPopularitasPenulis3">1</th>
-                    <th id="barisNormPopularitasPenulis4">1</th>
-                    <th id="barisNormPopularitasPenulis5">4</th>
-                    <th id="barisNormPopularitasPenulis6">1</th>
+                    <th id="barisNormPopularitas1">1</th>
+                    <th id="barisNormPopularitas2">1</th>
+                    <th id="barisNormPopularitas3">1</th>
+                    <th id="barisNormPopularitas4">1</th>
+                    <th id="barisNormPopularitas5">4</th>
+                    <th id="barisNormPopularitas6">1</th>
                     </tr>
                     <tr>
                     <th>Rating Penulis</th>
                     <th id="barisNormRatingPenulis1">1</th>
                     <th id="barisNormRatingPenulis2">1</th>
                     <th id="barisNormRatingPenulis3">1</th>
-                    <th bgcolor="yellow" id="barisNormRatingPenulis4">1</th>
+                    <th id="barisNormRatingPenulis4">1</th>
                         <th id="barisNormRatingPenulis5">4</th>
                         <th id="barisNormRatingPenulis6">1</th>
                     </tr>
                 </table>
             </div>
         <p></p>
+            <div id="matriksKonsistensi">
+                <h2>Matriks Mengukur Konsistensi</h2>
+                <table style="width:80%">
+                    <tr>
+                    <th></th>
+                    <th>Rating Novel</th>
+                    <th>Penghargaan</th>
+                    <th>Popularitas Penulis</th>
+                    <th>Rating Penulis</th>
+                    <th>Jumlah Baris</th>
+                    <th>Sum / Relatif Kriteria</th>
+                    </tr>
+                    <tr>
+                    <th>Rating Novel</th>
+                    <th id="barisKonsRatingNovel1">1</th>
+                    <th id="barisKonsRatingNovel2">1</th>
+                    <th id="barisKonsRatingNovel3">1</th>
+                    <th id="barisKonsRatingNovel4">1</th>
+                    <th id="barisKonsRatingNovel5">4</th>
+                    <th id="barisKonsRatingNovel6">1</th>
+                    </tr>
+                    <tr>
+                    <th>Penghargaan</th>
+                    <th id="barisKonsPenghargaan1">1</th>
+                    <th id="barisKonsPenghargaan2">1</th>
+                    <th id="barisKonsPenghargaan3">1</th>
+                    <th id="barisKonsPenghargaan4">1</th>
+                    <th id="barisKonsPenghargaan5">4</th>
+                    <th id="barisKonsPenghargaan6">1</th>
+                    </tr>
+                    <tr>
+                    <th>Popularitas Penulis</th>
+                    <th id="barisKonsPopularitas1">1</th>
+                    <th id="barisKonsPopularitas2">1</th>
+                    <th id="barisKonsPopularitas3">1</th>
+                    <th id="barisKonsPopularitas4">1</th>
+                    <th id="barisKonsPopularitas5">4</th>
+                    <th id="barisKonsPopularitas6">1</th>
+                    </tr>
+                    <tr>
+                    <th>Rating Penulis</th>
+                    <th id="barisKonsRatingPenulis1">1</th>
+                    <th id="barisKonsRatingPenulis2">1</th>
+                    <th id="barisKonsRatingPenulis3">1</th>
+                    <th id="barisKonsRatingPenulis4">1</th>
+                        <th id="barisKonsRatingPenulis5">4</th>
+                        <th id="barisKonsRatingPenulis6">1</th>
+                    </tr>
+                </table>
+            </div>
+        <p></p>
+            <div id="lambdaMaks">
+                <h2>Penjumlahan dari Perkalian Jumlah Kolom dengan Eigen Vektor</h2>
+                <h2>(LamdaMaks)= <span id="lamdaMaks" style='color:blue'></span></h2>
+            </div>
+            <div id="konsistensiIndex">
+                <h2>Consistency Index (CI) = (LamdaMaks-n)/(n-1)</h2>
+                <h2>(CI)= <span id="consistencyIndex" style='color:blue'></span></h2>
+            </div>
+            <p></p>
+            <div id="nilaiCR">
+                <h2>CR = CI/RI</h2>
+                <h2>(CR)= <span id="cr" style='color:blue'></span> <span id="hasilPreferensiPembobotan"></span></h2>
+            </div>
+            <p></p>
         <input type="submit" name="submit" value="Tampilkan Rekomendasi" onclick="">
         </form>
         </div>
     
         
 </body>
+    <tail>
+    <script src="dummyform.js" type="text/javascript"></script>
+    </tail>
 </html>
