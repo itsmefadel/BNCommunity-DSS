@@ -45,7 +45,7 @@
             
             <div id="matriksInput">
                 <h2>Matriks Pairwise Comparison</h2>
-                <table style="width:80%">
+                <table style="width:100%">
                     <tr>
                     <th></th>
                     <th>Rating Novel</th>
@@ -93,7 +93,7 @@
             </div>
             <div id="matriksInputNormalisasi">
                 <h2>Matriks Normalisasi Input</h2>
-                <table style="width:80%">
+                <table style="width:100%">
                     <tr>
                     <th></th>
                     <th>Rating Novel</th>
@@ -144,7 +144,7 @@
             </div>
             <div id="matriksKonsistensi">
                 <h2>Matriks Mengukur Konsistensi</h2>
-                <table style="width:80%">
+                <table style="width:100%">
                     <tr>
                     <th></th>
                     <th>Rating Novel</th>
@@ -208,15 +208,59 @@
             </div>      
             <div id="matriksDataAsli">
             <h2>Matriks Data Asli</h2>
-            <table id="tabelDataAsli" style="width:80%"></table>
+            <table id="tabelDataAsli" style="width:100%"></table>
             <hr>
             </div>
             <div id="matriksNormData">
             <h2>Normalisasi Matriks Dengan Normalisasi Linear</h2>
-            <table id="tabelMatriksNormalisasi" style="width:80%"></table>
+            <table id="tabelMatriksNormalisasi" style="width:100%"></table>
             <hr>
             </div>
+            <div id="matriksNormXBobot">
+            <h2>Normalisasi X Bobot</h2>
+            <table id="tabelMatriksXBobot" style="width:100%"></table>
+            <hr>
+            </div>
+            <div id="matriksSR">
+            <h2>Menghitung Nilai S dan R</h2>
+            <table id="tabelMatriksSR" style="width:100%"></table>
+            <hr>
+            <h2>Dengan nilai sensitifitas(V) =0.5</h2>
+            </div>
+            <div id="matriksIndexViqor">
+            <h2>Index Viqor (Q)</h2>
+            <table id="tabelMatriksViqor" style="width:100%"></table>
+            <hr>
+            </div>
+            <div id="matriksIndexQ">
+            <h2>Perankingan Berdasarkan Index Viqor (Q)</h2>
+            <table id="tabelMatriksQ" style="width:100%"></table>
+            <hr>
+            </div>
+            <div id="matriksIndex4">
+            <h2>Perankingan Berdasarkan Index V=0.4 </h2>
+            <table id="tabelMatriks4" style="width:100%"></table>
+            <hr>
+            </div>
+            <div id="matriksIndex6">
+            <h2>Perankingan Berdasarkan Index V=0.6 </h2>
+            <table id="tabelMatriks6" style="width:100%"></table>
+            <hr>
+            </div>
+            <div id="nilaiDq">
+                <h2>Nilai DQ = 1/(n-1)  = <span id="dq" style='color:blue'></span></h2>
+            <hr>
+            </div>
+            <div id="nilaiAmA1"></div>
+            <div id="matriksRekomendasi">
+            <hr>
+            <h2>Hasil Rekomendasi</h2>
+            <table id="tabelRekomendasi" style="width:100%"></table>
+            <hr>
+            </div>  
+             
             
+            <hr>
             <p></p>
         <input type="submit" name="submit" value="Tampilkan Rekomendasi" onclick="">
         </form>
@@ -225,7 +269,7 @@
         
 </body>
     <tail>
-    <script src="dataAsli.js" type="text/javascript"></script>
     <script src="dummyform.js" type="text/javascript"></script>
+    <script language="javascript" src="dataAsli.js" type="text/javascript"></script>
     </tail>
 </html>

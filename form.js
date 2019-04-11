@@ -16,7 +16,6 @@ var iK2="antara "+iK1+"dan "+iK3;
 var iK4="antara "+iK3+"dan "+iK5;
 var iK6="antara "+iK5+"dan "+iK7;
 var iK8="antara "+iK7+"dan "+iK9;
-var jumlahKolomRatingNovel, jumlahKolomPenghargaan, jumlahKolomPopularitaspenulis, jumlahKolomRatingPenulis;
 
 function prosesSlider1(value){
     var nilai;

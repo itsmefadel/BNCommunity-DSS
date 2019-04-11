@@ -1,4 +1,4 @@
-var dataRaw=[ 
+const dataRaw=[ 
 [1,'The Fault in Our Stars (John Green)',4.24,27,260439,4.08,260474.32], 
 [2,'Divergent (Veronica Roth)',4.22,18,313517,4.08,313543.3], 
 [3,'Gone Girl (Gillian Flynn)',4.05,9,56162,4.01,56179.06], 
@@ -49,13 +49,12 @@ var dataRaw=[
 [48,'The Red Pyramid (Rick Riordan) ',4.08,5,241391,4.32,241404.4], 
 [49,'The Raven Boys (Maggie Stiefvater)',4.06,9,110881,3.98,110898.04], 
 [50,'Between Shades of Gray (Ruta Sepetys)',4.22,11,9087,4.12,9106.34] 
-];  
-var coba=dataRaw;
-//console.log(coba.baris3.judul);
+];
+
 printDataAsli();
 
 function printDataAsli(){
-    //membuat satu baris pada tabel
+    //membuat header tabel
     var tr1=document.createElement("tr");
     var th1=document.createElement("th");
     th1.appendChild(document.createTextNode("No"));
@@ -88,7 +87,7 @@ function printDataAsli(){
     for(var i=0;i<50;i++){
     var tr1=document.createElement("tr");
     var th1=document.createElement("th");
-    th1.appendChild(document.createTextNode(i));
+    th1.appendChild(document.createTextNode(dataRaw[i][0]));
     tr1.appendChild(th1);
     var th2=document.createElement("th");
     th2.appendChild(document.createTextNode(dataRaw[i][1]));
@@ -120,7 +119,6 @@ function printDataAsli(){
         if(dataRaw[i][3]<minPenghargaan){minPenghargaan=dataRaw[i][3];}
         if(dataRaw[i][4]<minPopularitas){minPopularitas=dataRaw[i][4];}
         if(dataRaw[i][5]<minRatingPenulis){minRatingPenulis=dataRaw[i][5];}
-        console.log(maxRatingNovel+" "+maxPenghargaan+" "+maxPopularitas+" "+maxRatingPenulis);
     }
     //print nilai max dan min tiap kolom
     //nilai max
@@ -173,8 +171,541 @@ function printDataAsli(){
     th6.setAttribute("style","background-color:yellow");
     tr1.appendChild(th6);
     document.getElementById("tabelDataAsli").appendChild(tr1);
-    memprintMatriksNormalisasi();
-}
-function memprintMatriksNormalisasi(){
     
+    //membentuk matriks normalisasi
+ membentukMatriksNormalisasi(maxRatingNovel,maxPenghargaan,maxPopularitas,maxRatingPenulis,minRatingNovel,minPenghargaan,minPopularitas,minRatingPenulis);
+}
+
+function membentukMatriksNormalisasi(maxRatingNovel,maxPenghargaan,maxPopularitas,maxRatingPenulis,minRatingNovel,minPenghargaan,minPopularitas,minRatingPenulis){
+    var matriksNorm=cloningArray(dataRaw);
+    /*var coba=(maxRatingNovel-matriksNorm[0][2])/(maxRatingNovel-minRatingNovel);
+    console.log("("+maxRatingNovel+"-"+matriksNorm[0][2]+")-("+maxRatingNovel+"-"+minRatingNovel+") = "+coba);*/
+    
+    for(var i=0;i<50;i++){
+    matriksNorm[i][2]=(maxRatingNovel-matriksNorm[i][2])/(maxRatingNovel-minRatingNovel);
+    matriksNorm[i][3]=(maxPenghargaan-matriksNorm[i][3])/(maxPenghargaan-minPenghargaan);
+    matriksNorm[i][4]=(maxPopularitas-matriksNorm[i][4])/(maxPopularitas-minPopularitas);
+    matriksNorm[i][5]=(maxRatingPenulis-matriksNorm[i][5])/(maxRatingPenulis-minRatingPenulis);
+    }
+    printMatriksNormalisasi(matriksNorm);
+}
+
+function printMatriksNormalisasi(matriksNorm){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("Rating Novel"));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode("Penghargaan"));
+    tr1.appendChild(th4);
+    var th5=document.createElement("th");
+    th5.appendChild(document.createTextNode("Popularitas Penulis"));
+    tr1.appendChild(th5);
+    var th6=document.createElement("th");
+    th6.appendChild(document.createTextNode("Rating Penulis"));
+    tr1.appendChild(th6);
+    document.getElementById("tabelMatriksNormalisasi").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriksNorm[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksNorm[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriksNorm[i][2]));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode(matriksNorm[i][3]));
+    tr1.appendChild(th4);
+    var th5=document.createElement("th");
+    th5.appendChild(document.createTextNode(matriksNorm[i][4]));
+    tr1.appendChild(th5);
+    var th6=document.createElement("th");
+    th6.appendChild(document.createTextNode(matriksNorm[i][5]));
+    tr1.appendChild(th6);
+    document.getElementById("tabelMatriksNormalisasi").appendChild(tr1);
+    }
+    
+    normalisasiXbobot(matriksNorm);
+}
+
+function normalisasiXbobot(matriksNorm){
+    //mengambil matriks prioritas relatif kriteria
+    var prioritasRelatifKriteria=new Array(1,1,1,1);
+ prioritasRelatifKriteria[0]=document.getElementById("barisNormRatingNovel6").innerHTML;
+ prioritasRelatifKriteria[1]=document.getElementById("barisNormPenghargaan6").innerHTML;    prioritasRelatifKriteria[2]=document.getElementById("barisNormPopularitas6").innerHTML;
+ prioritasRelatifKriteria[3]=document.getElementById("barisNormRatingPenulis6").innerHTML;
+    
+    //mengkalikan tiap matriks normalisasi dengan matriks prioritas relatif kriteria
+    for(var i=0;i<50;i++){
+    matriksNorm[i][2]=matriksNorm[i][2]*prioritasRelatifKriteria[0];
+    matriksNorm[i][3]=matriksNorm[i][3]*prioritasRelatifKriteria[1];
+    matriksNorm[i][4]=matriksNorm[i][4]*prioritasRelatifKriteria[2];
+    matriksNorm[i][5]=matriksNorm[i][5]*prioritasRelatifKriteria[3];
+    }
+    printMatriksNormalisasiXBobot(matriksNorm);
+}
+
+function printMatriksNormalisasiXBobot(matriksNorm){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("Rating Novel"));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode("Penghargaan"));
+    tr1.appendChild(th4);
+    var th5=document.createElement("th");
+    th5.appendChild(document.createTextNode("Popularitas Penulis"));
+    tr1.appendChild(th5);
+    var th6=document.createElement("th");
+    th6.appendChild(document.createTextNode("Rating Penulis"));
+    tr1.appendChild(th6);
+    document.getElementById("tabelMatriksXBobot").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriksNorm[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksNorm[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriksNorm[i][2]));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode(matriksNorm[i][3]));
+    tr1.appendChild(th4);
+    var th5=document.createElement("th");
+    th5.appendChild(document.createTextNode(matriksNorm[i][4]));
+    tr1.appendChild(th5);
+    var th6=document.createElement("th");
+    th6.appendChild(document.createTextNode(matriksNorm[i][5]));
+    tr1.appendChild(th6);
+    document.getElementById("tabelMatriksXBobot").appendChild(tr1);
+    }
+    menghitungSdanR(matriksNorm);
+}
+
+function menghitungSdanR(matriksNorm){
+    var matriksSR=cloningArray(matriksNorm);
+    var s,r,maxS,minS,maxR,minR;
+       
+    //mendapatkan sum dan max
+    for(var i=0;i<50;i++){
+        //mendapatkan sum
+        s=matriksNorm[i][2]+matriksNorm[i][3]+matriksNorm[i][4]+matriksNorm[i][5];
+     //mendapatkan max
+         r=matriksNorm[i][2];
+    for(var j=2;j<=5;j++){
+    if(r<matriksNorm[i][j]){r=matriksNorm[i][j];} 
+    }
+        matriksSR[i][2]=s;
+        matriksSR[i][3]=r;
+    }
+    maxS=s;minS=s;
+    maxR=r;minR=r;
+    //mendapatkan kolom maxS, kolom minS, kolom maxR, dan kolom minR
+    for(var i=0;i<50;i++){
+        if(maxS<matriksSR[i][2]){maxS=matriksSR[i][2];}
+        if(minS>matriksSR[i][2]){minS=matriksSR[i][2];}
+        if(maxR<matriksSR[i][3]){maxR=matriksSR[i][3];}
+        if(minR>matriksSR[i][3]){minR=matriksSR[i][3];}
+    }
+    printMatriksSR(matriksSR,maxS,minS,maxR,minR);
+}
+
+function printMatriksSR(matriksSR,maxS,minS,maxR,minR){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("S (SUM)"));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode("R (MAX)"));
+    tr1.appendChild(th4);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriksSR[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksSR[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriksSR[i][2]));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode(matriksSR[i][3]));
+    tr1.appendChild(th4);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
+    }
+    //mengisi nilai max dan min tiap kolom
+    //mengisi nilai max
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(" "));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("MAX "));
+    th2.setAttribute("style","background-color:green");
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(maxS));
+    th3.setAttribute("style","background-color:green");
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode(maxR));
+    th4.setAttribute("style","background-color:green");
+    tr1.appendChild(th4);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
+    //mengisi nilai min
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(""));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("MIN "));
+    th2.setAttribute("style","background-color:yellow");
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(minS));
+    th3.setAttribute("style","background-color:yellow");
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode(minR));
+    th4.setAttribute("style","background-color:yellow");
+    tr1.appendChild(th4);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
+    
+    menghitungIndexViqor(matriksSR,maxS,minS,maxR,minR);
+}
+
+function menghitungIndexViqor(matriksSR,maxS,minS,maxR,minR){
+    var matriksViqor=cloningArray(matriksSR);
+    for(var i=0;i<50;i++){
+        //Jika nilai V=0.5
+    matriksViqor[i][2]=(((matriksSR[i][2]-minS)/(maxS-minS))*0.5)+(((matriksSR[i][3]-minR)/(maxR-minR))*(1-0.5));
+        //Jika nilai V=0.4
+        matriksViqor[i][3]=(((matriksSR[i][2]-minS)/(maxS-minS))*0.4)+(((matriksSR[i][3]-minR)/(maxR-minR))*(1-0.4));
+        //Jika nilai V=0.6
+        matriksViqor[i][4]=(((matriksSR[i][2]-minS)/(maxS-minS))*0.6)+(((matriksSR[i][3]-minR)/(maxR-minR))*(1-0.6));
+    }
+    printMatriksIndexViqor(matriksViqor,matriksSR);
+}
+
+function printMatriksIndexViqor(matriksViqor,matriksSR){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("Q"));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode("V=0.4"));
+    tr1.appendChild(th4);
+    var th5=document.createElement("th");
+    th5.appendChild(document.createTextNode("V=0.6"));
+    tr1.appendChild(th5);
+    document.getElementById("tabelMatriksViqor").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriksViqor[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksViqor[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriksViqor[i][2]));
+    tr1.appendChild(th3);
+    var th4=document.createElement("th");
+    th4.appendChild(document.createTextNode(matriksViqor[i][3]));
+    tr1.appendChild(th4);
+    var th5=document.createElement("th");
+    th5.appendChild(document.createTextNode(matriksViqor[i][4]));
+    tr1.appendChild(th5);
+    document.getElementById("tabelMatriksViqor").appendChild(tr1);
+    }
+    merangkingkan(matriksViqor,matriksSR);
+}
+
+function merangkingkan(matriksViqor,matriksSR){
+    var matriksQ=cloningArray(matriksViqor);
+    var matriks4=cloningArray(matriksViqor);
+    var matriks6=cloningArray(matriksViqor);
+    //merangkingkan
+    matriksQ.sort(sortFunctionQ);
+    matriks4.sort(sortFunction4);
+    matriks6.sort(sortFunction6);
+
+
+    printMatriksQ(matriksQ);
+    printMatriks4(matriks4);
+    printMatriks6(matriks6);
+    //menentukan apakah C1 di terima
+    var dq=mencariNilaiDq();
+    var jumlahSolusi=mencariNilaiAmA1(matriksQ,dq);
+    var c1=false,c2=false;
+    
+    //print Solusi
+    //Jika c1 terpenuhi
+    if((matriksQ[1][2]-matriksQ[0][2])>=dq){
+        c1=true;
+    var h3=document.createElement("h3");
+    var z=document.createTextNode("C1 Terpenuhi");
+    h3.appendChild(z);
+    document.getElementById("nilaiAmA1").appendChild(h3);
+    }else{
+    var h3=document.createElement("h3");
+    var z=document.createTextNode("C1 Tidak Terpenuhi karena nilai pengurangan = "+(matriksQ[1][2]-matriksQ[0][2]));
+    h3.appendChild(z);
+    document.getElementById("nilaiAmA1").appendChild(h3);
+    }
+    //Jika c2 terpenuhi
+    //sorting matriks S R
+    matriksSR.sort(sortFunctionQ);
+    //membandingkan apakah baris pertama merupakan baris pertama juga di matriks SR &/ matriks V=0.4 &/ matriks V=0.6
+    if(matriksQ[0][1]===matriksSR[0][1]){
+        if(matriksQ[0][1]===matriks4[0][1]){
+            if(matriksQ[0][1]===matriks6[0][1]){
+                var h3=document.createElement("h3");
+    var z=document.createTextNode("C2 Terpenuhi dengan jumlah solusi sebanyak "+jumlahSolusi);
+    h3.appendChild(z);
+    document.getElementById("nilaiAmA1").appendChild(h3);
+                c2=true;
+        }}}
+    printRekomendasi(matriksQ,jumlahSolusi,c1,c2);
+}
+
+function printMatriksQ(matriksQ){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("Q"));
+    tr1.appendChild(th3);
+    document.getElementById("tabelMatriksQ").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriksQ[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksQ[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriksQ[i][2]));
+    tr1.appendChild(th3);
+    document.getElementById("tabelMatriksQ").appendChild(tr1);
+    }
+}
+function printMatriks4(matriks4){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("v=0.4"));
+    tr1.appendChild(th3);
+    document.getElementById("tabelMatriks4").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriks4[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriks4[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriks4[i][3]));
+    tr1.appendChild(th3);
+    document.getElementById("tabelMatriks4").appendChild(tr1);
+    }
+}
+function printMatriks6(matriks6){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode("v=0.6"));
+    tr1.appendChild(th3);
+    document.getElementById("tabelMatriks6").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<50;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(matriks6[i][0]));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriks6[i][1]));
+    tr1.appendChild(th2);
+    var th3=document.createElement("th");
+    th3.appendChild(document.createTextNode(matriks6[i][4]));
+    tr1.appendChild(th3);
+    document.getElementById("tabelMatriks6").appendChild(tr1);
+    }
+}
+function mencariNilaiDq(){
+    n=50;
+    var dq=(1/(n-1));
+    document.getElementById("dq").innerHTML=dq;
+    return dq;
+}
+function mencariNilaiAmA1(matriksQ,dq){
+    var jumlahSolusi=1;
+    var nilaiPengurangan;
+    for(var i=1;i<50;i++){
+    nilaiPengurangan=matriksQ[i][2]-matriksQ[0][2];
+    if(nilaiPengurangan<dq){
+        jumlahSolusi++;
+    /*var h3=document.createElement("h3");
+    var z=document.createTextNode("nilai A"+(i+1)+"-A1 = "+nilaiPengurangan);
+    h3.appendChild(z);
+    document.getElementById("nilaiAmA1").appendChild(h3);*/
+    }}
+    
+    return jumlahSolusi;
+}
+
+function printRekomendasi(matriksQ,jumlahSolusi,c1,c2){
+    if(c1&&!c2){
+    //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    document.getElementById("tabelRekomendasi").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<2;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(i+1));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksQ[i][1]));
+    tr1.appendChild(th2);
+    document.getElementById("tabelRekomendasi").appendChild(tr1);
+    }}
+    if(!c1){
+       //membuat header tabel
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode("No"));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode("Judul"));
+    tr1.appendChild(th2);
+    document.getElementById("tabelRekomendasi").appendChild(tr1);
+    
+    //memprint isi tabel tiap baris
+    for(var i=0;i<jumlahSolusi;i++){
+    var tr1=document.createElement("tr");
+    var th1=document.createElement("th");
+    th1.appendChild(document.createTextNode(i+1));
+    tr1.appendChild(th1);
+    var th2=document.createElement("th");
+    th2.appendChild(document.createTextNode(matriksQ[i][1]));
+    tr1.appendChild(th2);
+    document.getElementById("tabelRekomendasi").appendChild(tr1);
+    } 
+    }
+}
+
+
+
+
+//cloning Array
+function cloningArray(arrayAsli){
+    var arrayCloning=new Array(50);
+    for(var i=0;i<50;i++){
+        arrayCloning[i]=new Array(7);
+        for(var j=0;j<6;j++){
+        arrayCloning[i][j]=arrayAsli[i][j];
+        }
+    }
+    return arrayCloning;
+}
+//algoritma sorting
+function sortFunctionQ(a, b) {
+    if (a[2] === b[2]) {
+        return 0;
+    }
+    else {
+        return (a[2] < b[2]) ? -1 : 1;
+    }
+}
+function sortFunction4(a, b) {
+    if (a[3] === b[3]) {
+        return 0;
+    }
+    else {
+        return (a[3] < b[3]) ? -1 : 1;
+    }
+}
+function sortFunction6(a, b) {
+    if (a[4] === b[4]) {
+        return 0;
+    }
+    else {
+        return (a[4] < b[4]) ? -1 : 1;
+    }
 }
