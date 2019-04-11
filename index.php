@@ -40,8 +40,9 @@
         <input id="slider6" name="inputJudulSkenario" type="range" value="8" min="0" max="16" class="slider" onmousemove="prosesSlider6(this.value,6)" onChange="prosesSlider6(this.value,6)">
         <span id="nilaiSlider6">1</span>
         <p></p>
-        </div>
             <hr>
+        </div>
+            
             <div id="matriksInput">
                 <h2>Matriks Pairwise Comparison</h2>
                 <table style="width:80%">
@@ -88,8 +89,8 @@
                     <th bgcolor="green" id="jumlahKolom4">1</th>
                     </tr>
                 </table>
+                <hr>
             </div>
-            <hr>
             <div id="matriksInputNormalisasi">
                 <h2>Matriks Normalisasi Input</h2>
                 <table style="width:80%">
@@ -139,8 +140,8 @@
                         <th id="barisNormRatingPenulis6">1</th>
                     </tr>
                 </table>
+                <hr>
             </div>
-        <p></p>
             <div id="matriksKonsistensi">
                 <h2>Matriks Mengukur Konsistensi</h2>
                 <table style="width:80%">
@@ -190,8 +191,8 @@
                         <th id="barisKonsRatingPenulis6">1</th>
                     </tr>
                 </table>
+                <hr>
             </div>
-        <p></p>
             <div id="lambdaMaks">
                 <h2>Penjumlahan dari Perkalian Jumlah Kolom dengan Eigen Vektor</h2>
                 <h2>(LamdaMaks)= <span id="lamdaMaks" style='color:blue'></span></h2>
@@ -200,11 +201,22 @@
                 <h2>Consistency Index (CI) = (LamdaMaks-n)/(n-1)</h2>
                 <h2>(CI)= <span id="consistencyIndex" style='color:blue'></span></h2>
             </div>
-            <p></p>
             <div id="nilaiCR">
                 <h2>CR = CI/RI</h2>
                 <h2>(CR)= <span id="cr" style='color:blue'></span> <span id="hasilPreferensiPembobotan"></span></h2>
+            <hr>
+            </div>      
+            <div id="matriksDataAsli">
+            <h2>Matriks Data Asli</h2>
+            <table id="tabelDataAsli" style="width:80%"></table>
+            <hr>
             </div>
+            <div id="matriksNormData">
+            <h2>Normalisasi Matriks Dengan Normalisasi Linear</h2>
+            <table id="tabelMatriksNormalisasi" style="width:80%"></table>
+            <hr>
+            </div>
+            
             <p></p>
         <input type="submit" name="submit" value="Tampilkan Rekomendasi" onclick="">
         </form>
@@ -213,6 +225,7 @@
         
 </body>
     <tail>
+    <script src="dataAsli.js" type="text/javascript"></script>
     <script src="dummyform.js" type="text/javascript"></script>
     </tail>
 </html>
