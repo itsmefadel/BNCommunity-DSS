@@ -558,14 +558,14 @@ function prosesSlider6(value){
 }
 
 function printMatriks(){
-    /*for(var i=0;i<4;i++){
+    for(var i=0;i<4;i++){
        var index=i+1;
 
-       //document.getElementById("barisRatingNovel"+(i+1)).innerHTML=barisRatingNovel[i];
-//document.getElementById("barisPenghargaan"+(i+1)).innerHTML=barisPenghargaan[i];
-       //document.getElementById("barisPopularitasPenulis"+(i+1)).innerHTML=barisPopularitas[i];
-       //document.getElementById("barisRatingPenulis"+(i+1)).innerHTML=barisRatingPenulis[i];
-   }*/
+       document.getElementById("barisRatingNovel"+(i+1)).innerHTML=barisRatingNovel[i];
+document.getElementById("barisPenghargaan"+(i+1)).innerHTML=barisPenghargaan[i];
+       document.getElementById("barisPopularitasPenulis"+(i+1)).innerHTML=barisPopularitas[i];
+       document.getElementById("barisRatingPenulis"+(i+1)).innerHTML=barisRatingPenulis[i];
+   }
     menjumlahKolom();
 }
 
@@ -575,12 +575,10 @@ var jumlahTiapKolom=new Array(1,1,1,1);
        for(var i=0;i<4;i++){
 jumlahTiapKolom[i]=barisRatingNovel[i]+barisPenghargaan[i]+barisPopularitas[i]+barisRatingPenulis[i];
        }
-    /*
-    //document.getElementById("jumlahKolom1").innerHTML=jumlahTiapKolom[0];
-    //document.getElementById("jumlahKolom2").innerHTML=jumlahTiapKolom[1];
-    //document.getElementById("jumlahKolom3").innerHTML=jumlahTiapKolom[2];
-    //document.getElementById("jumlahKolom4").innerHTML=jumlahTiapKolom[3];
-    */
+    document.getElementById("jumlahKolom1").innerHTML=jumlahTiapKolom[0];
+    document.getElementById("jumlahKolom2").innerHTML=jumlahTiapKolom[1];
+    document.getElementById("jumlahKolom3").innerHTML=jumlahTiapKolom[2];
+    document.getElementById("jumlahKolom4").innerHTML=jumlahTiapKolom[3];
     menormalisasiMatriksInput(jumlahTiapKolom);
 }
 
@@ -592,13 +590,13 @@ var normBarisRatingPenulis=new Array(1,1,1,1);
     
     for(var i=0;i<4;i++){
 normBarisRatingNovel[i]=barisRatingNovel[i]/jumlahTiapKolom[i];
-////document.getElementById("barisNormRatingNovel"+(i+1)).innerHTML=normBarisRatingNovel[i];
+document.getElementById("barisNormRatingNovel"+(i+1)).innerHTML=normBarisRatingNovel[i];
 normBarisPenghargaan[i]=barisPenghargaan[i]/jumlahTiapKolom[i];
-////document.getElementById("barisNormPenghargaan"+(i+1)).innerHTML=normBarisPenghargaan[i];   
+document.getElementById("barisNormPenghargaan"+(i+1)).innerHTML=normBarisPenghargaan[i];   
 normBarisPopularitas[i]=barisPopularitas[i]/jumlahTiapKolom[i];
-////document.getElementById("barisNormPopularitas"+(i+1)).innerHTML=normBarisPopularitas[i];
+document.getElementById("barisNormPopularitas"+(i+1)).innerHTML=normBarisPopularitas[i];
 normBarisRatingPenulis[i]=barisRatingPenulis[i]/jumlahTiapKolom[i];
-////document.getElementById("barisNormRatingPenulis"+(i+1)).innerHTML=normBarisRatingPenulis[i];
+document.getElementById("barisNormRatingPenulis"+(i+1)).innerHTML=normBarisRatingPenulis[i];
     }
     
 menjumlahBarisNorm(normBarisRatingNovel,normBarisPenghargaan,normBarisPopularitas,normBarisRatingPenulis);
@@ -610,20 +608,17 @@ function menjumlahBarisNorm(normBarisRatingNovel,normBarisPenghargaan,normBarisP
     jumlahTiapBaris[1]=normBarisPenghargaan.reduce(totalSum);
     jumlahTiapBaris[2]=normBarisPopularitas.reduce(totalSum);
     jumlahTiapBaris[3]=normBarisRatingPenulis.reduce(totalSum);
- /*
-    //document.getElementById("barisNormRatingNovel5").innerHTML=jumlahTiapBaris[0];
-//document.getElementById("barisNormPenghargaan5").innerHTML=jumlahTiapBaris[1];
-    //document.getElementById("barisNormPopularitas5").innerHTML=jumlahTiapBaris[2];
-    //document.getElementById("barisNormRatingPenulis5").innerHTML=jumlahTiapBaris[3];
-    */
+ document.getElementById("barisNormRatingNovel5").innerHTML=jumlahTiapBaris[0];
+document.getElementById("barisNormPenghargaan5").innerHTML=jumlahTiapBaris[1];
+    document.getElementById("barisNormPopularitas5").innerHTML=jumlahTiapBaris[2];
+    document.getElementById("barisNormRatingPenulis5").innerHTML=jumlahTiapBaris[3];
     menghitungPrioritasRelatifKriteria(jumlahTiapBaris);
 }
 
 function menghitungPrioritasRelatifKriteria(jumlahTiapBaris){
     for(var i=0;i<4;i++){
     prioritasRelatifKriteria[i]=jumlahTiapBaris[i]/4;}
-    /*
-//document.getElementById("barisNormRatingNovel6").innerHTML=prioritasRelatifKriteria[0];    //document.getElementById("barisNormPenghargaan6").innerHTML=prioritasRelatifKriteria[1];    //document.getElementById("barisNormPopularitas6").innerHTML=prioritasRelatifKriteria[2];    //document.getElementById("barisNormRatingPenulis6").innerHTML=prioritasRelatifKriteria[3];*/
+document.getElementById("barisNormRatingNovel6").innerHTML=prioritasRelatifKriteria[0];    document.getElementById("barisNormPenghargaan6").innerHTML=prioritasRelatifKriteria[1];    document.getElementById("barisNormPopularitas6").innerHTML=prioritasRelatifKriteria[2];    document.getElementById("barisNormRatingPenulis6").innerHTML=prioritasRelatifKriteria[3];
     mengukurKonsistensi();
 }
 
@@ -634,13 +629,13 @@ var konsBarisPopularitas=new Array(1,1,1,1);
 var konsBarisRatingPenulis=new Array(1,1,1,1);
     for(var i=0;i<4;i++){
         konsBarisRatingNovel[i]=barisRatingNovel[i]*prioritasRelatifKriteria[i];
-        ////document.getElementById("barisKonsRatingNovel"+(i+1)).innerHTML=konsBarisRatingNovel[i];
+        document.getElementById("barisKonsRatingNovel"+(i+1)).innerHTML=konsBarisRatingNovel[i];
         konsBarisPenghargaan[i]=barisPenghargaan[i]*prioritasRelatifKriteria[i];
-        ////document.getElementById("barisKonsPenghargaan"+(i+1)).innerHTML=konsBarisPenghargaan[i];
+        document.getElementById("barisKonsPenghargaan"+(i+1)).innerHTML=konsBarisPenghargaan[i];
         konsBarisPopularitas[i]=barisPopularitas[i]*prioritasRelatifKriteria[i];
-        ////document.getElementById("barisKonsPopularitas"+(i+1)).innerHTML=konsBarisPopularitas[i];
+        document.getElementById("barisKonsPopularitas"+(i+1)).innerHTML=konsBarisPopularitas[i];
         konsBarisRatingPenulis[i]=barisRatingPenulis[i]*prioritasRelatifKriteria[i];
-        ////document.getElementById("barisKonsRatingPenulis"+(i+1)).innerHTML=konsBarisRatingPenulis[i];
+        document.getElementById("barisKonsRatingPenulis"+(i+1)).innerHTML=konsBarisRatingPenulis[i];
     }
  menjumlahBarisKons(konsBarisRatingNovel,konsBarisPenghargaan,konsBarisPopularitas,konsBarisRatingPenulis);
 }
@@ -651,10 +646,10 @@ function menjumlahBarisKons(konsBarisRatingNovel,konsBarisPenghargaan,konsBarisP
     jumlahTiapBaris[1]=konsBarisPenghargaan.reduce(totalSum);
     jumlahTiapBaris[2]=konsBarisPopularitas.reduce(totalSum);
     jumlahTiapBaris[3]=konsBarisRatingPenulis.reduce(totalSum);
- ////document.getElementById("barisKonsRatingNovel5").innerHTML=jumlahTiapBaris[0];
-////document.getElementById("barisKonsPenghargaan5").innerHTML=jumlahTiapBaris[1];
-   // //document.getElementById("barisKonsPopularitas5").innerHTML=jumlahTiapBaris[2];
-////document.getElementById("barisKonsRatingPenulis5").innerHTML=jumlahTiapBaris[3];
+ document.getElementById("barisKonsRatingNovel5").innerHTML=jumlahTiapBaris[0];
+document.getElementById("barisKonsPenghargaan5").innerHTML=jumlahTiapBaris[1];
+    document.getElementById("barisKonsPopularitas5").innerHTML=jumlahTiapBaris[2];
+    document.getElementById("barisKonsRatingPenulis5").innerHTML=jumlahTiapBaris[3];
     sumRelatifKriteria(jumlahTiapBaris);
 }
 function sumRelatifKriteria(jumlahTiapBaris){
@@ -662,22 +657,22 @@ function sumRelatifKriteria(jumlahTiapBaris){
     for(var i=0;i<4;i++){
         totalRelatifKriteria[i]=jumlahTiapBaris[i]/prioritasRelatifKriteria[i];
     }
-    ////document.getElementById("barisKonsRatingNovel6").innerHTML=totalRelatifKriteria[0];
-    ////document.getElementById("barisKonsPenghargaan6").innerHTML=totalRelatifKriteria[1];
-    ////document.getElementById("barisKonsPopularitas6").innerHTML=totalRelatifKriteria[2];
-    ////document.getElementById("barisKonsRatingPenulis6").innerHTML=totalRelatifKriteria[3];
+    document.getElementById("barisKonsRatingNovel6").innerHTML=totalRelatifKriteria[0];
+    document.getElementById("barisKonsPenghargaan6").innerHTML=totalRelatifKriteria[1];
+    document.getElementById("barisKonsPopularitas6").innerHTML=totalRelatifKriteria[2];
+    document.getElementById("barisKonsRatingPenulis6").innerHTML=totalRelatifKriteria[3];
     menghitungLamdaMaks(totalRelatifKriteria);
 }
 
 function menghitungLamdaMaks(totalRelatifKriteria){
     var lamdaMaks=totalRelatifKriteria.reduce(totalSum)/4;
-    ////document.getElementById("lamdaMaks").innerHTML=lamdaMaks;
+    document.getElementById("lamdaMaks").innerHTML=lamdaMaks;
     menghitungConsistencyIndex(lamdaMaks);
 }
 function menghitungConsistencyIndex(lamdaMaks){
     var n=4;
     var ci=(lamdaMaks-n)/(n-1);
-    ////document.getElementById("consistencyIndex").innerHTML=ci;
+    document.getElementById("consistencyIndex").innerHTML=ci;
     menghitungCr(ci,n);
 }
 function menghitungCr(ci,n){
@@ -694,13 +689,13 @@ function menghitungCr(ci,n){
     if(n==10){ri=1.51;}
     
     var cr=ci/ri;
-    ////document.getElementById("cr").innerHTML=cr;
+    document.getElementById("cr").innerHTML=cr;
     if(cr<=0.1){
-        //document.getElementById("hasilPreferensiPembobotan").innerHTML="<span style='color:green'>|CR<=0.1</span>";
+        document.getElementById("hasilPreferensiPembobotan").innerHTML="<span style='color:green'>|CR<=0.1</span>";
         document.getElementById("sK").innerHTML="<span style='color:green'>Pembobotan Konsisten</span>";
         document.getElementById("buttonTampilrekomendasi").disabled=false;
     }else{
-        //document.getElementById("hasilPreferensiPembobotan").innerHTML="<span style='color:red'>|CR>0.1</span>";
+        document.getElementById("hasilPreferensiPembobotan").innerHTML="<span style='color:red'>|CR>0.1</span>";
         document.getElementById("sK").innerHTML="<span style='color:red'>Pembobotan Tidak Konsisten</span>";
         document.getElementById("buttonTampilrekomendasi").disabled=true;
     }

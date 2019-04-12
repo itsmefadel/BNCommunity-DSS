@@ -77,7 +77,7 @@ function printDataAsli(){
     var th7=document.createElement("th");
     th7.appendChild(document.createTextNode("Nilai Akhir"));
     tr1.appendChild(th7);
-    ////document.getElementById("tabelDataAsli").appendChild(tr1);
+    document.getElementById("tabelDataAsli").appendChild(tr1);
     
     //deklarasi max min untuk tiap kolom
     var maxRatingNovel=dataRaw[0][2],maxPenghargaan=dataRaw[0][3],maxPopularitas=dataRaw[0][4],maxRatingPenulis=dataRaw[0][5];
@@ -107,7 +107,7 @@ function printDataAsli(){
     var th7=document.createElement("th");
     th7.appendChild(document.createTextNode(dataRaw[i][6]));
     tr1.appendChild(th7);
-    ////document.getElementById("tabelDataAsli").appendChild(tr1);
+    document.getElementById("tabelDataAsli").appendChild(tr1);
         //membandingkan nilai max dan min
         //mencari nilai max
         if(dataRaw[i][2]>maxRatingNovel){maxRatingNovel=dataRaw[i][2];}
@@ -145,7 +145,7 @@ function printDataAsli(){
     th6.appendChild(document.createTextNode(maxRatingPenulis));
     th6.setAttribute("style","background-color:green");
     tr1.appendChild(th6);
-    ////document.getElementById("tabelDataAsli").appendChild(tr1);
+    document.getElementById("tabelDataAsli").appendChild(tr1);
     //nilai min
     var tr1=document.createElement("tr");
     var th1=document.createElement("th");
@@ -170,7 +170,7 @@ function printDataAsli(){
     th6.appendChild(document.createTextNode(minRatingPenulis));
     th6.setAttribute("style","background-color:yellow");
     tr1.appendChild(th6);
-    ////document.getElementById("tabelDataAsli").appendChild(tr1);
+    document.getElementById("tabelDataAsli").appendChild(tr1);
     
     //membentuk matriks normalisasi
  membentukMatriksNormalisasi(maxRatingNovel,maxPenghargaan,maxPopularitas,maxRatingPenulis,minRatingNovel,minPenghargaan,minPopularitas,minRatingPenulis);
@@ -211,7 +211,7 @@ function printMatriksNormalisasi(matriksNorm){
     var th6=document.createElement("th");
     th6.appendChild(document.createTextNode("Rating Penulis"));
     tr1.appendChild(th6);
-    ////document.getElementById("tabelMatriksNormalisasi").appendChild(tr1);
+    document.getElementById("tabelMatriksNormalisasi").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -234,7 +234,7 @@ function printMatriksNormalisasi(matriksNorm){
     var th6=document.createElement("th");
     th6.appendChild(document.createTextNode(matriksNorm[i][5]));
     tr1.appendChild(th6);
-    ////document.getElementById("tabelMatriksNormalisasi").appendChild(tr1);
+    document.getElementById("tabelMatriksNormalisasi").appendChild(tr1);
     }
     
     normalisasiXbobot(matriksNorm);
@@ -244,9 +244,9 @@ function normalisasiXbobot(matriksNorm){
     /*
     //mengambil matriks prioritas relatif kriteria
     var prioritasRelatifKriteria=new Array(1,1,1,1);
- //prioritasRelatifKriteria[0]=////document.getElementById("barisNormRatingNovel6").innerHTML;
- //prioritasRelatifKriteria[1]=////document.getElementById("barisNormPenghargaan6").innerHTML;    //prioritasRelatifKriteria[2]=////document.getElementById("barisNormPopularitas6").innerHTML;
- //prioritasRelatifKriteria[3]=////document.getElementById("barisNormRatingPenulis6").innerHTML;*/
+ prioritasRelatifKriteria[0]=document.getElementById("barisNormRatingNovel6").innerHTML;
+ prioritasRelatifKriteria[1]=document.getElementById("barisNormPenghargaan6").innerHTML;    prioritasRelatifKriteria[2]=document.getElementById("barisNormPopularitas6").innerHTML;
+ prioritasRelatifKriteria[3]=document.getElementById("barisNormRatingPenulis6").innerHTML;*/
     
     //mengkalikan tiap matriks normalisasi dengan matriks prioritas relatif kriteria
     for(var i=0;i<50;i++){
@@ -279,7 +279,7 @@ function printMatriksNormalisasiXBobot(matriksNorm){
     var th6=document.createElement("th");
     th6.appendChild(document.createTextNode("Rating Penulis"));
     tr1.appendChild(th6);
-    //////document.getElementById("tabelMatriksXBobot").appendChild(tr1);
+    document.getElementById("tabelMatriksXBobot").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -302,7 +302,7 @@ function printMatriksNormalisasiXBobot(matriksNorm){
     var th6=document.createElement("th");
     th6.appendChild(document.createTextNode(matriksNorm[i][5]));
     tr1.appendChild(th6);
-    //////document.getElementById("tabelMatriksXBobot").appendChild(tr1);
+    document.getElementById("tabelMatriksXBobot").appendChild(tr1);
     }
     menghitungSdanR(matriksNorm);
 }
@@ -350,7 +350,7 @@ function printMatriksSR(matriksSR,maxS,minS,maxR,minR){
     var th4=document.createElement("th");
     th4.appendChild(document.createTextNode("R (MAX)"));
     tr1.appendChild(th4);
-    //////document.getElementById("tabelMatriksSR").appendChild(tr1);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -367,7 +367,7 @@ function printMatriksSR(matriksSR,maxS,minS,maxR,minR){
     var th4=document.createElement("th");
     th4.appendChild(document.createTextNode(matriksSR[i][3]));
     tr1.appendChild(th4);
-    //////document.getElementById("tabelMatriksSR").appendChild(tr1);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
     }
     //mengisi nilai max dan min tiap kolom
     //mengisi nilai max
@@ -387,7 +387,7 @@ function printMatriksSR(matriksSR,maxS,minS,maxR,minR){
     th4.appendChild(document.createTextNode(maxR));
     th4.setAttribute("style","background-color:green");
     tr1.appendChild(th4);
-    //////document.getElementById("tabelMatriksSR").appendChild(tr1);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
     //mengisi nilai min
     var tr1=document.createElement("tr");
     var th1=document.createElement("th");
@@ -405,7 +405,7 @@ function printMatriksSR(matriksSR,maxS,minS,maxR,minR){
     th4.appendChild(document.createTextNode(minR));
     th4.setAttribute("style","background-color:yellow");
     tr1.appendChild(th4);
-    //////document.getElementById("tabelMatriksSR").appendChild(tr1);
+    document.getElementById("tabelMatriksSR").appendChild(tr1);
     
     menghitungIndexViqor(matriksSR,maxS,minS,maxR,minR);
 }
@@ -441,7 +441,7 @@ function printMatriksIndexViqor(matriksViqor,matriksSR){
     var th5=document.createElement("th");
     th5.appendChild(document.createTextNode("V=0.6"));
     tr1.appendChild(th5);
-    ////document.getElementById("tabelMatriksViqor").appendChild(tr1);
+    document.getElementById("tabelMatriksViqor").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -461,7 +461,7 @@ function printMatriksIndexViqor(matriksViqor,matriksSR){
     var th5=document.createElement("th");
     th5.appendChild(document.createTextNode(matriksViqor[i][4]));
     tr1.appendChild(th5);
-    ////document.getElementById("tabelMatriksViqor").appendChild(tr1);
+    document.getElementById("tabelMatriksViqor").appendChild(tr1);
     }
     merangkingkan(matriksViqor,matriksSR);
 }
@@ -491,12 +491,12 @@ function merangkingkan(matriksViqor,matriksSR){
     var h3=document.createElement("h3");
     var z=document.createTextNode("C1 Terpenuhi");
     h3.appendChild(z);
-    ////document.getElementById("nilaiAmA1").appendChild(h3);
+    document.getElementById("nilaiAmA1").appendChild(h3);
     }else{
     var h3=document.createElement("h3");
     var z=document.createTextNode("C1 Tidak Terpenuhi karena nilai pengurangan = "+(matriksQ[1][2]-matriksQ[0][2]));
     h3.appendChild(z);
-    ////document.getElementById("nilaiAmA1").appendChild(h3);
+    document.getElementById("nilaiAmA1").appendChild(h3);
         
         //Jika c2 terpenuhi
     //sorting matriks S R
@@ -508,7 +508,7 @@ function merangkingkan(matriksViqor,matriksSR){
                 var h3=document.createElement("h3");
     var z=document.createTextNode("C2 Terpenuhi dengan jumlah solusi sebanyak "+jumlahSolusi);
     h3.appendChild(z);
-    ////document.getElementById("nilaiAmA1").appendChild(h3);
+    document.getElementById("nilaiAmA1").appendChild(h3);
                 c2=true;
         }}}
     }
@@ -528,7 +528,7 @@ function printMatriksQ(matriksQ){
     var th3=document.createElement("th");
     th3.appendChild(document.createTextNode("Q"));
     tr1.appendChild(th3);
-    ////document.getElementById("tabelMatriksQ").appendChild(tr1);
+    document.getElementById("tabelMatriksQ").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -542,7 +542,7 @@ function printMatriksQ(matriksQ){
     var th3=document.createElement("th");
     th3.appendChild(document.createTextNode(matriksQ[i][2]));
     tr1.appendChild(th3);
-    ////document.getElementById("tabelMatriksQ").appendChild(tr1);
+    document.getElementById("tabelMatriksQ").appendChild(tr1);
     }
 }
 function printMatriks4(matriks4){
@@ -557,7 +557,7 @@ function printMatriks4(matriks4){
     var th3=document.createElement("th");
     th3.appendChild(document.createTextNode("v=0.4"));
     tr1.appendChild(th3);
-    ////document.getElementById("tabelMatriks4").appendChild(tr1);
+    document.getElementById("tabelMatriks4").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -571,7 +571,7 @@ function printMatriks4(matriks4){
     var th3=document.createElement("th");
     th3.appendChild(document.createTextNode(matriks4[i][3]));
     tr1.appendChild(th3);
-    ////document.getElementById("tabelMatriks4").appendChild(tr1);
+    document.getElementById("tabelMatriks4").appendChild(tr1);
     }
 }
 function printMatriks6(matriks6){
@@ -586,7 +586,7 @@ function printMatriks6(matriks6){
     var th3=document.createElement("th");
     th3.appendChild(document.createTextNode("v=0.6"));
     tr1.appendChild(th3);
-    ////document.getElementById("tabelMatriks6").appendChild(tr1);
+    document.getElementById("tabelMatriks6").appendChild(tr1);
     
     //memprint isi tabel tiap baris
     for(var i=0;i<50;i++){
@@ -600,13 +600,13 @@ function printMatriks6(matriks6){
     var th3=document.createElement("th");
     th3.appendChild(document.createTextNode(matriks6[i][4]));
     tr1.appendChild(th3);
-    ////document.getElementById("tabelMatriks6").appendChild(tr1);
+    document.getElementById("tabelMatriks6").appendChild(tr1);
     }
 }
 function mencariNilaiDq(){
     n=50;
     var dq=(1/(n-1));
-    //////document.getElementById("dq").innerHTML=dq;
+    document.getElementById("dq").innerHTML=dq;
     return dq;
 }
 function mencariNilaiAmA1(matriksQ,dq){
@@ -619,7 +619,7 @@ function mencariNilaiAmA1(matriksQ,dq){
     /*var h3=document.createElement("h3");
     var z=document.createTextNode("nilai A"+(i+1)+"-A1 = "+nilaiPengurangan);
     h3.appendChild(z);
-    ////document.getElementById("nilaiAmA1").appendChild(h3);*/
+    document.getElementById("nilaiAmA1").appendChild(h3);*/
     }}
     
     return jumlahSolusi;
